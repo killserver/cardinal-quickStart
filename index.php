@@ -19,5 +19,5 @@ for($i=0;$i<sizeof($files);$i++) {
 	file_put_contents($files[$i], $file);
 	chmod($files[$i], 0777);
 }
-header("Location: ".basename(__FILE__));
+header("Location: ./");
 ?>
