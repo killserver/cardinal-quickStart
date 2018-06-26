@@ -1,9 +1,4 @@
 <?php
-if(!isset($_GET['step'])) {
-	chmod(__FILE__, 0777);
-	header("Location: ".basename(__FILE__)."?step");
-	die();
-}
 $files = array(
 	".htaccess",
 	"Archive_Tar.php",
@@ -17,7 +12,9 @@ for($i=0;$i<sizeof($files);$i++) {
 		unlink($files[$i]);
 	}
 	file_put_contents($files[$i], $file);
-	chmod($files[$i], 0777);
+}
+if(!is_writeable(__FILE__)) {
+	@chmod(__FILE__, 0777);
 }
 unlink(__FILE__);
 header("Location: ./");
